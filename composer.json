@@ -1,0 +1,21 @@
+{
+  "name": "martinsifra/train",
+  "type": "library",
+  "description": "Doubly linked list with sorting.",
+  "homepage": "https://github.com/martinsifra/train",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Martin Šifra",
+      "email": "me@martinsifra.cz"
+    }
+  ],
+  "require": {
+    "php": "^7.4 | ^8.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Train\\": "src/"
+    }
+  }
+}
