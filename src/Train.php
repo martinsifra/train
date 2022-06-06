@@ -20,7 +20,16 @@ class Train
 
 	public function attach(Carriage $carriage): self
 	{
-		// Find the right place with SortStrategy where to attach new carriage.
+		$after = $this->sortStrategy->sort($this, $carriage);
+
+		$carriage->onAttach($this, $after);
+
+		if ($after === null) {
+			$this->head = $carriage;
+			$this->tail = $this->tail ?? $carriage;
+		} elseif ($carriage->next() === null) {
+			$this->tail = $carriage;
+		}
 
 		return $this;
 	}
