@@ -12,7 +12,7 @@ abstract class Carriage
 	abstract public function order(): int;
 
 
-	public function onAttach(?Carriage $previous, ?Carriage $next): void
+	public function onAttach(Train $train, ?Carriage $after): void
 	{
 		// Change previous and next carriages pointers.
 	}
