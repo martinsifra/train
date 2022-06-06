@@ -4,9 +4,9 @@ namespace Train;
 
 abstract class Carriage
 {
-	protected ?Carriage $previous;
+	protected ?Carriage $previous = null;
 
-	protected ?Carriage $next;
+	protected ?Carriage $next = null;
 
 
 	abstract public function order(): int;
@@ -14,7 +14,27 @@ abstract class Carriage
 
 	public function onAttach(Train $train, ?Carriage $after): void
 	{
-		// Change previous and next carriages pointers.
+		$head = $train->head();
+
+		if ($head === null) { // Train without carriages
+			return;
+		}
+
+		if ($after === null) { // At the beginning of train
+			$this->next = $head;
+			$head->previous = $this;
+		} else {
+			$next = $after->next;
+
+			$this->previous = $after;
+			$this->next = $next;
+
+			$after->next = $this;
+
+			if ($next !== null) { // Not the end of train
+				$next->previous = $this;
+			}
+		}
 	}
 
 
@@ -28,5 +48,6 @@ abstract class Carriage
 	{
 		return $this->next;
 	}
+
 
 }
