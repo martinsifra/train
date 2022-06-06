@@ -4,9 +4,9 @@ namespace Train;
 
 class Train
 {
-	private ?Carriage $head = NULL;
+	private ?Carriage $head = null;
 
-	private ?Carriage $tail = NULL;
+	private ?Carriage $tail = null;
 
 	private SortStrategy $sortStrategy;
 
